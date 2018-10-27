@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="databaseSchemaUpdate" value="true"/>
+
+    <property name="dbHistoryUsed" value="true"/>
+    <property name="dbIdentityUsed" value="true"/>
+
+    <property name="historyLevel" value="FULL"/>
+    <property name="enableDatabaseEventLogging" value="true"/>
+  </bean>
+  <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+    <property name="url"
+              value="jdbc:mysql://123.206.62.172:3300/activiti6?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="username" value="root"/>
+    <property name="password" value="Drb.199519.cq"/>
+    <!--初始化连接数-->
+    <property name="initialSize" value="1"/>
+    <!--最大连接数-->
+    <property name="maxActive" value="10"/>
+    <!--过滤器 监控和日志打印sql-->
+    <property name="filters" value="stat,slf4j"/>
+  </bean>
+
+</beans>

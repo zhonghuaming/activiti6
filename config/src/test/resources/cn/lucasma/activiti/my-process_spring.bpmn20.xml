@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn"
+	xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+	xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema"
+	expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+
+	<process id="my-process">
+
+		<startEvent id="start" />
+		<sequenceFlow id="flow1" sourceRef="start" targetRef="someTask" />
+
+		<userTask id="someTask" name="Activiti is awesome!" />
+		<sequenceFlow id="flow2" sourceRef="someTask" targetRef="hellobean" />
+		<serviceTask id="hellobean" activiti:expression="${helloBean.sayHello()}" />
+		<sequenceFlow id="flow3" sourceRef="hellobean" targetRef="end" />
+		<endEvent id="end" />
+
+	</process>
+
+	<bpmndi:BPMNDiagram>
+		<bpmndi:BPMNPlane>
+			<bpmndi:BPMNShape bpmnElement="hellobean">
+				<omgdc:Bounds height="48.0" width="120.0" x="290.8791193302028" y="3.552713678800501E-14"/>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape bpmnElement="start">
+				<omgdc:Bounds height="48.0" width="48.0" x="0.0" y="7.815970093361102E-14"/>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape bpmnElement="end">
+				<omgdc:Bounds height="48.0" width="48.0" x="475.4422225127711" y="0.0"/>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape bpmnElement="someTask">
+				<omgdc:Bounds height="48.0" width="119.0" x="147.59913357077153" y="-49.99999999999992"/>
+			</bpmndi:BPMNShape>
+		</bpmndi:BPMNPlane>
+	</bpmndi:BPMNDiagram>
+</definitions>

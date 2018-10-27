@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="processEngineConfiguration"
+          class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+        <!--<property name="jdbcUrl" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000;MVCC=TRUE" />-->
+        <!--<property name="jdbcDriver" value="org.h2.Driver" />-->
+        <!--<property name="jdbcUsername" value="sa" />-->
+        <!--<property name="jdbcPassword" value="" />-->
+        <!--mdc拦截器-->
+        <!--<property name="commandInvoker" ref="commandInvoker"/>-->
+        <!--开启事件日志 默认是 false-->
+        <property name="enableDatabaseEventLogging" value="false"/>
+        <!--拦截器配置-->
+        <property name="customPreCommandInterceptors">
+            <list>
+                <bean class="cn.lucasma.activiti.interceptor.DurationCommandInterceptor"/>
+            </list>
+        </property>
+
+        <!--<property name="customPostCommandInterceptors">-->
+        <!--<list>-->
+        <!--<bean class="cn.lucasma.activiti.interceptor.DurationCommandInterceptor"/>-->
+        <!--</list>-->
+        <!--</property>-->
+
+        <!--是否展示执行过程的日志-->
+        <property name="enableVerboseExecutionTreeLogging" value="true"/>
+    </bean>
+    <bean id="commandInvoker" class="cn.lucasma.activiti.interceptor.MDCCommandInvoker"/>
+</beans>

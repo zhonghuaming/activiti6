@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <bean id="processEngineConfiguration"
+        class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+    <property name="jdbcUrl"
+              value="jdbc:mysql://123.206.62.172:3300/activiti6?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
+    <property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
+    <property name="jdbcUsername" value="root"/>
+    <property name="jdbcPassword" value="Drb.199519.cq"/>
+
+    <!--表策略 更新表 和jpa 表策略类似-->
+    <property name="databaseSchemaUpdate" value="true"/>
+
+    <!--表策略 不更新表 当activiti版本和数据库表结构对应不上是启动报错 不更新表-->
+    <!--<property name="databaseSchemaUpdate" value="false"/>-->
+    <!--表策略 默认值 程序启动是创建表 关闭时删除表 适合单元测试演示 不会存在脏数据-->
+    <!--<property name="databaseSchemaUpdate" value="create-drop"/>-->
+  </bean>
+</beans>

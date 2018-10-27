@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+    <!--<property name="jdbcUrl" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000;MVCC=TRUE" />-->
+    <!--<property name="jdbcDriver" value="org.h2.Driver" />-->
+    <!--<property name="jdbcUsername" value="sa" />-->
+    <!--<property name="jdbcPassword" value="" />-->
+   <property name="commandInvoker" ref="commandInvoker"/>
+      <!--流程历史记录级别
+      none: 不记录历史流程，性能高，流程结束后不可读取
+      activiti：归档流程实例和活动实例，流程变量不同步
+      audit：默认值，在activi基础上同步变量值，保存表单属性
+      full：性能较差，记录所有实例和变量细节变化
+      -->
+   <property name="history" value="audit"/>
+  </bean>
+  <bean id="commandInvoker" class="cn.lucasma.activiti.interceptor.MDCCommandInvoker"/>
+</beans>

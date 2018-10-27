@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+
+    <process id="my-process">
+
+        <startEvent id="startEvent" name="startEvent"/>
+        <userTask id="commonTask" name="Common Task"/>
+        <boundaryEvent attachedToRef="commonTask" id="boundaryEvent" name="timer" cancelActivity="true">
+            <timerEventDefinition>
+                <timeDuration>PT5S</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+        <userTask id="timeoutTask" name="Timeout Task"></userTask>
+        <endEvent id="end1"></endEvent>
+        <endEvent id="end2"></endEvent>
+
+        <sequenceFlow sourceRef="startEvent" targetRef="commonTask"/>
+        <sequenceFlow sourceRef="commonTask" targetRef="end1"/>
+        <sequenceFlow sourceRef="boundaryEvent" targetRef="timeoutTask"/>
+        <sequenceFlow sourceRef="timeoutTask" targetRef="end2"/>
+    </process>
+
+    <bpmndi:BPMNDiagram>
+        <bpmndi:BPMNPlane>
+            <bpmndi:BPMNShape bpmnElement="boundaryEvent">
+                <omgdc:Bounds height="48.0" width="48.0" x="36.0" y="196.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="startEvent">
+                <omgdc:Bounds height="48.0" width="48.0" x="201.0" y="196.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="end2">
+                <omgdc:Bounds height="48.0" width="48.0" x="36.0" y="0.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="end1">
+                <omgdc:Bounds height="48.0" width="48.0" x="201.0" y="0.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="commonTask">
+                <omgdc:Bounds height="48.0" width="120.0" x="165.0" y="98.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="timeoutTask">
+                <omgdc:Bounds height="48.0" width="120.0" x="0.0" y="98.0"/>
+            </bpmndi:BPMNShape>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</definitions>
