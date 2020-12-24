@@ -5,10 +5,10 @@
   <bean id="processEngineConfiguration"
         class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
     <property name="jdbcUrl"
-              value="jdbc:mysql://123.206.62.172:3300/activiti6?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
+              value="jdbc:mysql://127.0.0.1:3306/activiti6?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
     <property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
     <property name="jdbcUsername" value="root"/>
-    <property name="jdbcPassword" value="Drb.199519.cq"/>
+    <property name="jdbcPassword" value="huaming"/>
 
     <!--表策略 更新表 和jpa 表策略类似-->
     <property name="databaseSchemaUpdate" value="true"/>

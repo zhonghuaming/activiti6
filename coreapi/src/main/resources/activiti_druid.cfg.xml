@@ -16,7 +16,7 @@
         <!--<property name="databaseSchemaUpdate" value="create-drop"/>-->
 
         <!--流程执行完毕是否保留历史数据-->
-        <!--<property name="dbHistoryUsed" value="true"></property>-->
+        <property name="dbHistoryUsed" value="true"></property>
         <!--是否使用身份权限，一般是和系统的权限去做集成-->
         <!--<property name="dbIdentityUsed" value="true"></property>-->
         <!--表结构增加前缀-->
@@ -27,10 +27,10 @@
     </bean>
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url"
-                  value="jdbc:mysql://123.206.62.172:3300/activiti6?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
+                  value="jdbc:mysql://127.0.0.1:3306/activiti6?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="username" value="root"/>
-        <property name="password" value="Drb.199519.cq"/>
+        <property name="password" value="huaming"/>
         <!--初始化连接数-->
         <property name="initialSize" value="1"/>
         <!--最大连接数-->
@@ -42,10 +42,10 @@
     <!--spingboot2 默认数据源 日本光数据源 号称java平台最快-->
     <!--<bean id="dataSourceHikari" class="com.zaxxer.hikari.HikariDataSource">-->
     <!--<property name="jdbcUrl"-->
-    <!--value="jdbc:mysql://123.206.62.172:3300/activiti6?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>-->
+    <!--value="jdbc:mysql://127.0.0.1:3306/activiti6?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>-->
     <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
     <!--<property name="username" value="root"/>-->
-    <!--<property name="password" value="Drb.199519.cq"/>-->
+    <!--<property name="password" value="huaming"/>-->
     <!--<property name="maximumPoolSize" value="20"/>-->
     <!--</bean>-->
 </beans>

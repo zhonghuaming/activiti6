@@ -28,9 +28,9 @@ public class DbRepositoryTest {
     public void testSuspend() {
         RepositoryService repositoryService = activitiRule.getRepositoryService();
         //流程挂起
-        repositoryService.suspendProcessDefinitionById("second_approve:2:7504");
+        repositoryService.suspendProcessDefinitionById("second_approve:1:4");
         //判断流程是否被挂起
-        boolean suspended = repositoryService.isProcessDefinitionSuspended("second_approve:2:7504");
+        boolean suspended = repositoryService.isProcessDefinitionSuspended("second_approve:1:4");
         logger.info("suspended = {}", suspended);
 
     }

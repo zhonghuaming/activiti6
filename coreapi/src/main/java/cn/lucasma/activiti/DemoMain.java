@@ -39,16 +39,31 @@ public class DemoMain {
 
         // 部署流程定义文件
         ProcessDefinition processDefinition = getProcessDefinition(processEngine);
-
-        // 启动运行流程
-
+//
+//        // 启动运行流程
+//
         ProcessInstance processInstance = getProcessInstance(processEngine, processDefinition);
 
         // 处理流程任务
         processTask(processEngine, processInstance);
 
+//        processTask(processEngine);
+
         LOGGER.info("结束程序");
 
+    }
+
+    private static void processTask(ProcessEngine processEngine) throws ParseException {
+        Scanner scanner = new Scanner(System.in);
+        TaskService taskService = processEngine.getTaskService();
+        List<Task> list = taskService.createTaskQuery().list();
+        LOGGER.info("待处理任务数量 [{}]", list.size());
+        for (Task task : list) {
+
+            LOGGER.info("待处理任务 [{}]", task.getName());
+            Map<String, Object> variables = getMap(processEngine, scanner, task);
+            taskService.complete(task.getId(), variables);
+        }
     }
 
     private static void processTask(ProcessEngine processEngine, ProcessInstance processInstance) throws ParseException {
@@ -61,6 +76,7 @@ public class DemoMain {
 
                 LOGGER.info("待处理任务 [{}]", task.getName());
                 Map<String, Object> variables = getMap(processEngine, scanner, task);
+                //根据获取到的变量而进行做逻辑处理
                 taskService.complete(task.getId(), variables);
                 processInstance = processEngine.getRuntimeService()
                         .createProcessInstanceQuery()
@@ -117,7 +133,7 @@ public class DemoMain {
     }
 
     private static ProcessEngine getProcessEngine() {
-        ProcessEngineConfiguration cfg = ProcessEngineConfiguration.createStandaloneInMemProcessEngineConfiguration();
+        ProcessEngineConfiguration cfg = ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("activiti_druid.cfg.xml");
         ProcessEngine processEngine = cfg.buildProcessEngine();
         String name = processEngine.getName();
         String version = ProcessEngine.VERSION;
